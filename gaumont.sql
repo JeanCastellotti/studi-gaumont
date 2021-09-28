@@ -16,7 +16,7 @@ CREATE TABLE rooms (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   chairs_count SMALLINT UNSIGNED NOT NULL,
   theater_id INT NOT NULL,
-  FOREIGN KEY (theater_id) REFERENCES theaters(id)
+  FOREIGN KEY (theater_id) REFERENCES theaters(id) ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET=utf8mb4;
 
 -- Create table movies
@@ -32,7 +32,7 @@ CREATE TABLE shows (
   movie_id INT NOT NULL,
   room_id INT NOT NULL,
   FOREIGN KEY (movie_id) REFERENCES movies(id),
-  FOREIGN KEY (room_id) REFERENCES rooms(id)
+  FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET=utf8mb4;
 
 -- Create table rates
@@ -82,10 +82,10 @@ CREATE TABLE receipts (
   paid_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   user_id INT NOT NULL,
   rate_id INT NOT NULL,
-  show_id INT NOT NULL,
+  show_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (rate_id) REFERENCES rates(id),
-  FOREIGN KEY (show_id) REFERENCES shows(id)
+  FOREIGN KEY (show_id) REFERENCES shows(id) ON DELETE SET NULL
 ) ENGINE=InnoDB CHARACTER SET=utf8mb4;
 
 -- INSERT theaters
