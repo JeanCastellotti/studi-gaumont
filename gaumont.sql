@@ -155,7 +155,7 @@ VALUES
 INSERT INTO administrators 
 VALUES (5), (9), (6);
 
--- INSERT administrators
+-- INSERT rates
 INSERT INTO rates 
 VALUES 
 (NULL, 'full', 920),
